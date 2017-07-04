@@ -214,4 +214,16 @@ obj.b.y = wrapBy;
 obj.c.y = wrapCy;
 obj.d.y = wrapDy;
 
+obj.a.frontCount = getFront(obj.a.x,obj.a.y,.99).frontCount;
+obj.a.backCount = getFront(obj.a.x,obj.a.y,.99).backCount;
+obj.b.frontCount = getFront(obj.b.x,obj.b.y,.99).frontCount;
+obj.b.backCount = getFront(obj.b.x,obj.b.y,.99).backCount;
+obj.c.frontCount = getFront(obj.c.x,obj.c.y,.99).frontCount;
+obj.c.backCount = getFront(obj.c.x,obj.c.y,.99).backCount;
+obj.d.frontCount = getFront(obj.d.x,obj.d.y,.99).frontCount;
+obj.d.backCount = getFront(obj.d.x,obj.d.y,.99).backCount;
 console.log(obj);
+
+
+
+
