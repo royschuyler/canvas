@@ -285,6 +285,15 @@ obj.c.xBack = separateC.xBack;
 obj.d.xFront = separateD.xFront;
 obj.d.xBack = separateD.xBack;
 
+obj.a.yFront = separateA.yFront;
+obj.a.yBack = separateA.yBack;
+obj.b.yFront = separateB.yFront;
+obj.b.yBack = separateB.yBack;
+obj.c.yFront = separateC.yFront;
+obj.c.yBack = separateC.yBack;
+obj.d.yFront = separateD.yFront;
+obj.d.yBack = separateD.yBack;
+
 console.log(obj);
 
 var plotObj = {
@@ -345,4 +354,11 @@ var plotObj = {
     }
   }
 }
+
+//var look = equalOut(obj.a.xBack,obj.a.xFront);
+//console.log(look)
+plotObj.ab.back.x1 = equalOut(obj.a.xBack,obj.b.xBack).arr1;
+plotObj.ab.back.x2 = equalOut(obj.a.xBack,obj.b.xBack).arr2;
+plotObj.ab.back.y1 = equalOut(obj.a.yBack,obj.b.yBack).arr1;
+plotObj.ab.back.y2 = equalOut(obj.a.yBack,obj.b.yBack).arr2;
 console.log(plotObj)
