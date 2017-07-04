@@ -128,6 +128,27 @@ function getFront (x,y,s){
   return (obj)
 }
 
+function separate(xArr,yArr,frontCount,backcount){
+  var obj = {
+    xFront: [],
+    yFront: [],
+    xBack: [],
+    yBack: [],
+  }
+  for(i=0;i<xArr.length;i++){
+    if(i<=frontCount){
+      obj.xFront.push(xArr[i]);
+      obj.yFront.push(yArr[i]);
+    }else{
+      obj.xBack.push(xArr[i]);
+      obj.yBack.push(yArr[i]);
+    }
+  }
+  return obj
+}
+
+//**********************END FUNCTIONS*********************
+
 var obj = {
   a: {
     x: [],
@@ -222,6 +243,19 @@ obj.c.frontCount = getFront(obj.c.x,obj.c.y,.99).frontCount;
 obj.c.backCount = getFront(obj.c.x,obj.c.y,.99).backCount;
 obj.d.frontCount = getFront(obj.d.x,obj.d.y,.99).frontCount;
 obj.d.backCount = getFront(obj.d.x,obj.d.y,.99).backCount;
+
+var separateA = separate(obj.a.x,obj.a.y,obj.a.frontCount,obj.a.backCount);
+var separateB = separate(obj.b.x,obj.b.y,obj.b.frontCount,obj.b.backCount);
+var separateC = separate(obj.c.x,obj.c.y,obj.c.frontCount,obj.b.backCount);
+var separateD = separate(obj.d.x,obj.d.y,obj.c.frontCount,obj.b.backCount);
+obj.a.xFront = separateA.xFront;
+obj.a.xBack = separateA.xBack;
+obj.b.xFront = separateB.xFront;
+obj.b.xBack = separateB.xBack;
+obj.c.xFront = separateC.xFront;
+obj.c.xBack = separateC.xBack;
+obj.d.xFront = separateD.xFront;
+obj.d.xBack = separateD.xBack;
 console.log(obj);
 
 
