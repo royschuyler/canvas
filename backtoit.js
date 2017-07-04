@@ -147,6 +147,31 @@ function separate(xArr,yArr,frontCount,backcount){
   return obj
 }
 
+function equalOut(arr1,arr2){
+  var obj = {
+    arr1: arr1,
+    arr2: arr2
+  }
+  var length;
+  var toCopy;
+  if(obj.arr1.length >= obj.arr2.length){
+    length = obj.arr1.length
+    toCopy = obj.arr2[obj.arr2.length-1];
+    for(i=0;i<length;i++){
+      if(!obj.arr2[i]){
+        obj.arr2.push(toCopy);
+      }
+    }
+  } else{
+    length = obj.arr2.length
+    toCopy = obj.arr1[obj.arr1.length-1];
+    for(i=0;i<length;i++){
+      if(!obj.arr1[i]){
+        obj.arr1.push(toCopy);
+      }
+    }
+  } return obj
+}
 //**********************END FUNCTIONS*********************
 
 var obj = {
@@ -216,6 +241,7 @@ var ww1 = fancyww1(radUseArr,f2,n);
 var ww2 = fancyww2(ww1);
 var wrapRadArr = wrapRad(ww2);
 
+//MAKING WRAPS
 var wrapAx = wrapXFun(wrapRadArr,aAndBStart,pathx,1);
 var wrapAy = wrapYFun(pathx,e,wrapRadArr,aAndBStart,pathy,1);
 var wrapBx = wrapXFun(wrapRadArr,ringStart,pathx,bAndDSize);
@@ -225,7 +251,7 @@ var wrapCy = wrapYFun(pathx,e,wrapRadArr,cAndDStart,pathy,1);
 var wrapDx = wrapXFun(wrapRadArr,cAndDStart,pathx,bAndDSize);
 var wrapDy = wrapYFun(pathx,e,wrapRadArr,cAndDStart,pathy,bAndDSize);
 
-
+//PUTING WRAPS IN OBJ
 obj.a.x = wrapAx;
 obj.b.x = wrapBx;
 obj.c.x = wrapCx;
@@ -235,6 +261,7 @@ obj.b.y = wrapBy;
 obj.c.y = wrapCy;
 obj.d.y = wrapDy;
 
+//PUTTING FRONT AND BACK COUNTS IN OBJ
 obj.a.frontCount = getFront(obj.a.x,obj.a.y,.99).frontCount;
 obj.a.backCount = getFront(obj.a.x,obj.a.y,.99).backCount;
 obj.b.frontCount = getFront(obj.b.x,obj.b.y,.99).frontCount;
@@ -244,6 +271,7 @@ obj.c.backCount = getFront(obj.c.x,obj.c.y,.99).backCount;
 obj.d.frontCount = getFront(obj.d.x,obj.d.y,.99).frontCount;
 obj.d.backCount = getFront(obj.d.x,obj.d.y,.99).backCount;
 
+//SEPARATING FRONT AND BACK IN OBJ
 var separateA = separate(obj.a.x,obj.a.y,obj.a.frontCount,obj.a.backCount);
 var separateB = separate(obj.b.x,obj.b.y,obj.b.frontCount,obj.b.backCount);
 var separateC = separate(obj.c.x,obj.c.y,obj.c.frontCount,obj.b.backCount);
@@ -256,8 +284,65 @@ obj.c.xFront = separateC.xFront;
 obj.c.xBack = separateC.xBack;
 obj.d.xFront = separateD.xFront;
 obj.d.xBack = separateD.xBack;
+
 console.log(obj);
 
-
-
-
+var plotObj = {
+  ab: {
+    front: {
+      x1: [],
+      y1: [],
+      x2: [],
+      y2: []
+    },
+    back: {
+      x1: [],
+      y1: [],
+      x2: [],
+      y2: []
+    }
+  },
+  ac: {
+    front: {
+      x1: [],
+      y1: [],
+      x2: [],
+      y2: []
+    },
+    back: {
+      x1: [],
+      y1: [],
+      x2: [],
+      y2: []
+    }
+  },
+  cd: {
+    front: {
+      x1: [],
+      y1: [],
+      x2: [],
+      y2: []
+    },
+    back: {
+      x1: [],
+      y1: [],
+      x2: [],
+      y2: []
+    }
+  },
+  bd: {
+    front: {
+      x1: [],
+      y1: [],
+      x2: [],
+      y2: []
+    },
+    back: {
+      x1: [],
+      y1: [],
+      x2: [],
+      y2: []
+    }
+  }
+}
+console.log(plotObj)
