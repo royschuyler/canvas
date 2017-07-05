@@ -152,26 +152,62 @@ function equalOut(arr1,arr2){
     arr1: arr1,
     arr2: arr2
   }
-  var length;
-  var toCopy;
-  if(obj.arr1.length >= obj.arr2.length){
-    length = obj.arr1.length
-    toCopy = obj.arr2[obj.arr2.length-1];
+
+  if(obj.arr1.length > obj.arr2.length){
+    var length = obj.arr1.length
+    var toCopy = obj.arr2[obj.arr2.length-1];
     for(i=0;i<length;i++){
-      if(!obj.arr2[i]){
+      if(obj.arr2[i] == undefined){
         obj.arr2.push(toCopy);
       }
     }
   } else{
-    length = obj.arr2.length
-    toCopy = obj.arr1[obj.arr1.length-1];
+    var length = obj.arr2.length
+    var toCopy = obj.arr1[obj.arr1.length-1];
     for(i=0;i<length;i++){
-      if(!obj.arr1[i]){
+      if(obj.arr1[i] == undefined){
         obj.arr1.push(toCopy);
       }
     }
-  } return obj
+  }
+  return obj
 }
+
+
+// function equalOut(x1,x2,y1,y2){
+//   var obj = {
+//     x1: x1,
+//     x2: x2,
+//     y1: y1,
+//     y2: y2,
+//   }
+
+//   var length;
+//   var xToCopy;
+//   var yToCopy;
+
+//   if(obj.x1.length >= obj.x2.length){
+//     length = obj.x1.length
+//     xToCopy = obj.x2[obj.x2.length-1];
+//     yToCopy = obj.y2[obj.y2.length-1];
+//     for(i=0;i<length;i++){
+//       if(!obj.x2[i]){
+//         obj.x2.push(xToCopy);
+//         obj.y2.push(yToCopy);
+//       }
+//     }
+//   } else{
+//     length = obj.x2.length
+//     xToCopy = obj.x1[obj.x1.length-1];
+//     yToCopy = obj.y1[obj.y1.length-1];
+//     for(i=0;i<length;i++){
+//       if(!obj.x1[i]){
+//         obj.x1.push(xToCopy);
+//         obj.y1.push(yToCopy);
+//       }
+//     }
+//   } return obj
+// }
 //**********************END FUNCTIONS*********************
 
 var obj = {
@@ -264,12 +300,12 @@ obj.d.y = wrapDy;
 //PUTTING FRONT AND BACK COUNTS IN OBJ
 obj.a.frontCount = getFront(obj.a.x,obj.a.y,.99).frontCount;
 obj.a.backCount = getFront(obj.a.x,obj.a.y,.99).backCount;
-obj.b.frontCount = getFront(obj.b.x,obj.b.y,.99).frontCount;
-obj.b.backCount = getFront(obj.b.x,obj.b.y,.99).backCount;
+obj.b.frontCount = getFront(obj.b.x,obj.b.y,.9*bAndDSize).frontCount;
+obj.b.backCount = getFront(obj.b.x,obj.b.y,.9*bAndDSize).backCount;
 obj.c.frontCount = getFront(obj.c.x,obj.c.y,.99).frontCount;
 obj.c.backCount = getFront(obj.c.x,obj.c.y,.99).backCount;
-obj.d.frontCount = getFront(obj.d.x,obj.d.y,.99).frontCount;
-obj.d.backCount = getFront(obj.d.x,obj.d.y,.99).backCount;
+obj.d.frontCount = getFront(obj.d.x,obj.d.y,.9*bAndDSize).frontCount;
+obj.d.backCount = getFront(obj.d.x,obj.d.y,.9*bAndDSize).backCount;
 
 //SEPARATING FRONT AND BACK IN OBJ
 var separateA = separate(obj.a.x,obj.a.y,obj.a.frontCount,obj.a.backCount);
@@ -355,10 +391,113 @@ var plotObj = {
   }
 }
 
-//var look = equalOut(obj.a.xBack,obj.a.xFront);
-//console.log(look)
-plotObj.ab.back.x1 = equalOut(obj.a.xBack,obj.b.xBack).arr1;
-plotObj.ab.back.x2 = equalOut(obj.a.xBack,obj.b.xBack).arr2;
-plotObj.ab.back.y1 = equalOut(obj.a.yBack,obj.b.yBack).arr1;
-plotObj.ab.back.y2 = equalOut(obj.a.yBack,obj.b.yBack).arr2;
+//******************EQUALING OUT ARRS*********************************
+//AB BACK
+var abBackArr = [];
+abBackArr.push(equalOut(obj.a.xBack,obj.b.xBack).arr1);
+abBackArr.push(equalOut(obj.a.xBack,obj.b.xBack).arr2);
+abBackArr.push(equalOut(obj.a.yBack,obj.b.yBack).arr1);
+abBackArr.push(equalOut(obj.a.yBack,obj.b.yBack).arr2);
+//console.log(abBackArr);
+//AB FRONT
+var abFrontArr = [];
+abFrontArr.push(equalOut(obj.a.xFront,obj.b.xFront).arr1);
+abFrontArr.push(equalOut(obj.a.xFront,obj.b.xFront).arr2);
+abFrontArr.push(equalOut(obj.a.yFront,obj.b.yFront).arr1);
+abFrontArr.push(equalOut(obj.a.yFront,obj.b.yFront).arr2);
+//console.log(abFrontArr);
+
+//AC BACK
+var acBackArr = [];
+acBackArr.push(equalOut(obj.a.xBack,obj.c.xBack).arr1);
+acBackArr.push(equalOut(obj.a.xBack,obj.c.xBack).arr2);
+acBackArr.push(equalOut(obj.a.yBack,obj.c.yBack).arr1);
+acBackArr.push(equalOut(obj.a.yBack,obj.c.yBack).arr2);
+//console.log(acBackArr);
+//AC FRONT
+var acFrontArr = [];
+acFrontArr.push(equalOut(obj.a.xFront,obj.c.xFront).arr1);
+acFrontArr.push(equalOut(obj.a.xFront,obj.c.xFront).arr2);
+acFrontArr.push(equalOut(obj.a.yFront,obj.c.yFront).arr1);
+acFrontArr.push(equalOut(obj.a.yFront,obj.c.yFront).arr2);
+//console.log(acFrontArr);
+
+//CD BACK
+var cdBackArr = [];
+cdBackArr.push(equalOut(obj.c.xBack,obj.d.xBack).arr1);
+cdBackArr.push(equalOut(obj.c.xBack,obj.d.xBack).arr2);
+cdBackArr.push(equalOut(obj.c.yBack,obj.d.yBack).arr1);
+cdBackArr.push(equalOut(obj.c.yBack,obj.d.yBack).arr2);
+//console.log(cdBackArr);
+//CD FRONT
+var cdFrontArr = [];
+cdFrontArr.push(equalOut(obj.c.xFront,obj.d.xFront).arr1);
+cdFrontArr.push(equalOut(obj.c.xFront,obj.d.xFront).arr2);
+cdFrontArr.push(equalOut(obj.c.yFront,obj.d.yFront).arr1);
+cdFrontArr.push(equalOut(obj.c.yFront,obj.d.yFront).arr2);
+//console.log(cdFrontArr);
+
+//BD BACK
+var bdBackArr = [];
+bdBackArr.push(equalOut(obj.b.xBack,obj.d.xBack).arr1);
+bdBackArr.push(equalOut(obj.b.xBack,obj.d.xBack).arr2);
+bdBackArr.push(equalOut(obj.b.yBack,obj.d.yBack).arr1);
+bdBackArr.push(equalOut(obj.b.yBack,obj.d.yBack).arr2);
+//console.log(bdBackArr);
+//BD FRONT
+var bdFrontArr = [];
+bdFrontArr.push(equalOut(obj.b.xFront,obj.d.xFront).arr1);
+bdFrontArr.push(equalOut(obj.b.xFront,obj.d.xFront).arr2);
+bdFrontArr.push(equalOut(obj.b.yFront,obj.d.yFront).arr1);
+bdFrontArr.push(equalOut(obj.b.yFront,obj.d.yFront).arr2);
+//console.log(bdFrontArr);
+
+//************PUTTING EQUALED OUT ARRS INTO PLOT OBJ**********************
+//AB BACK
+plotObj.ab.back.x1 = abBackArr[0];
+plotObj.ab.back.x2 = abBackArr[1];
+plotObj.ab.back.y1 = abBackArr[2];
+plotObj.ab.back.y2 = abBackArr[3];
+//AB FRONT
+plotObj.ab.front.x1 = abFrontArr[0];
+plotObj.ab.front.x2 = abFrontArr[1];
+plotObj.ab.front.y1 = abFrontArr[2];
+plotObj.ab.front.y2 = abFrontArr[3];
+
+//ac BACK
+plotObj.ac.back.x1 = acBackArr[0];
+plotObj.ac.back.x2 = acBackArr[1];
+plotObj.ac.back.y1 = acBackArr[2];
+plotObj.ac.back.y2 = acBackArr[3];
+//ac FRONT
+plotObj.ac.front.x1 = acFrontArr[0];
+plotObj.ac.front.x2 = acFrontArr[1];
+plotObj.ac.front.y1 = acFrontArr[2];
+plotObj.ac.front.y2 = acFrontArr[3];
+
+//cd BacK
+plotObj.cd.back.x1 = cdBackArr[0];
+plotObj.cd.back.x2 = cdBackArr[1];
+plotObj.cd.back.y1 = cdBackArr[2];
+plotObj.cd.back.y2 = cdBackArr[3];
+//cd FRONT
+plotObj.cd.front.x1 = cdFrontArr[0];
+plotObj.cd.front.x2 = cdFrontArr[1];
+plotObj.cd.front.y1 = cdFrontArr[2];
+plotObj.cd.front.y2 = cdFrontArr[3];
+
+//bd BbdK
+plotObj.bd.back.x1 = bdBackArr[0];
+plotObj.bd.back.x2 = bdBackArr[1];
+plotObj.bd.back.y1 = bdBackArr[2];
+plotObj.bd.back.y2 = bdBackArr[3];
+//bd FRONT
+plotObj.bd.front.x1 = bdFrontArr[0];
+plotObj.bd.front.x2 = bdFrontArr[1];
+plotObj.bd.front.y1 = bdFrontArr[2];
+plotObj.bd.front.y2 = bdFrontArr[3];
+
+
+
+
 console.log(plotObj)
