@@ -183,8 +183,41 @@ function equalOut(arr1,arr2){
   return obj
 }
 //**********************END FUNCTIONS*********************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//******************************************************************************************************************
+//*************GLOBAL VARS******************************************************************************************
+var finalCount = 0;
+var extra = 'blinewidth 1 all' + '\n' + 'drawframe no' + '\n' + 'asetticks x no' + '\n' + 'asetticks y no' + '\n' + 'asetminticks x no' + '\n' + 'asetminticks y no' + '\n' +'framewidth 0' + '\n' + 'bstyle yes no no no no no no yes no no 0' + '\n' + 'margins 0 0 0 0' + '\n' + 'range x -1.2 1.2' + '\n' + 'range y -1.2 1.2';
 
-function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd){
+//*************************************BEGIN MAIN BIG FUNCTION**************************************************
+function makeShape(frontOrBack,d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd){
+  var text = '';
+  var buffer = '';
   var obj = {
     a: {
       x: [],
@@ -477,9 +510,9 @@ function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd){
   //console.log(plotObj);
 
   //*************PLOT STUFF************************************
-  var text = '';
-  var buffer = '';
-  var finalCount = 0;
+  // var text = '';
+  // var buffer = '';
+  // var finalCount = 0;
 
   function plot(x1,y1,x2,y2,s){
      //1 = white
@@ -563,30 +596,58 @@ function makeShape(d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd){
   var bdFrontY2 = plotObj.bd.front.y2;
   var bdFrontS = 'b';
 
-
+if(frontOrBack == 'b'){
   plot(abBackX1,abBackY1,abBackX2,abBackY2,abBackS);
   plot(cdBackX1,cdBackY1,cdBackX2,cdBackY2,cdBackS);
-  //plot(bdBackX1,bdBackY1,bdBackX2,bdBackY2,bdBackS);
+  plot(bdBackX1,bdBackY1,bdBackX2,bdBackY2,bdBackS);
+  //plot(abFrontX1,abFrontY1,abFrontX2,abFrontY2,abFrontS);
+  //plot(cdFrontX1,cdFrontY1,cdFrontX2,cdFrontY2,cdFrontS);
+  //plot(acFrontX1,acFrontY1,acFrontX2,acFrontY2,acFrontS);
+}
+if(frontOrBack == 'f'){
+  // plot(abBackX1,abBackY1,abBackX2,abBackY2,abBackS);
+  // plot(cdBackX1,cdBackY1,cdBackX2,cdBackY2,cdBackS);
+  // plot(bdBackX1,bdBackY1,bdBackX2,bdBackY2,bdBackS);
   plot(abFrontX1,abFrontY1,abFrontX2,abFrontY2,abFrontS);
   plot(cdFrontX1,cdFrontY1,cdFrontX2,cdFrontY2,cdFrontS);
-  //plot(acFrontX1,acFrontY1,acFrontX2,acFrontY2,acFrontS);
-
-
-var extra = 'blinewidth 1 all' + '\n' + 'drawframe no' + '\n' + 'asetticks x no' + '\n' + 'asetticks y no' + '\n' + 'asetminticks x no' + '\n' + 'asetminticks y no' + '\n' +'framewidth 0' + '\n' + 'bstyle yes no no no no no no yes no no 0' + '\n' + 'margins 0 0 0 0' + '\n' + 'range x -1.2 1.2' + '\n' + 'range y -1.2 1.2';
-
-var end = buffer + text + extra;
-console.log(end);
-//console.log(obj)
+  plot(acFrontX1,acFrontY1,acFrontX2,acFrontY2,acFrontS);
 }
 
-//makeShape(1000,15,sqrt(2),1,1,.9,radians(0),radians(20));
-makeShape(1000,15,sqrt(2),1,1,.9,radians(0),radians(360),radians(20))
-  // var d = 1000;
-  // var n = 15;
-  // var a = sqrt(2);
-  // var f1 = 1;
-  // var f2 = 1;
-  // var bAndDSize = .9;
-  // var baseRingStart = radians(0);
-  // var ringStart = radians(360);
-  // var aToCAdd = radians(20);
+var end = buffer + text;
+//console.log(end);
+return end
+}
+
+
+//END WORK
+var addToStart = 0;
+var addToCandD = 20;
+var d = 500;
+var n = 15;
+var a = sqrt(2);
+var f1 = 1;
+var f2 = 1;
+var bAndDSize = .9;
+
+
+
+
+var back1 =  makeShape('b',d,n,a,f1,f2,bAndDSize,radians(addToStart),radians(120),radians(addToCandD));
+var back2 =  makeShape('b',d,n,a,f1,f2,bAndDSize,radians(addToStart),radians(240),radians(addToCandD));
+var back3 =  makeShape('b',d,n,a,f1,f2,bAndDSize,radians(addToStart),radians(360),radians(addToCandD));
+var front1 = makeShape('f',d,n,a,f1,f2,bAndDSize,radians(addToStart),radians(120),radians(addToCandD));
+var front2 = makeShape('f',d,n,a,f1,f2,bAndDSize,radians(addToStart),radians(240),radians(addToCandD));
+var front3 = makeShape('f',d,n,a,f1,f2,bAndDSize,radians(addToStart),radians(360),radians(addToCandD));
+
+//var finish = back1 + '\n' + back2 + '\n' + back3 + '\n' + front1 + '\n' + front2 + '\n' + front3 + '\n'+ extra;
+var back = back1 + '\n' + back2 + '\n' + back3 + '\n';
+var front = front1 + '\n' + front2 + '\n' + front3 + '\n'+ extra;
+var finish = back + front;
+console.log(finish);
+//console.log(back3);
+
+
+//makeShape(frontOrBack,d,n,a,f1,f2,bAndDSize,baseRingStart,ringStart,aToCAdd)
+
+
+
